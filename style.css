@@ -313,3 +313,15 @@ footer {
     .slide { flex: 0 0 85%; }
     .contact-container { grid-template-columns: 1fr; padding: 2rem; }
 }
+
+/* --- Stuck effect: brief horizontal/scale motion when last slide reached --- */
+.slider-container.stuck .slide:last-child img {
+    animation: stuck-zoom 800ms cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes stuck-zoom {
+    0% { transform: translateX(0) scale(1.02); }
+    30% { transform: translateX(8px) scale(1.03); }
+    60% { transform: translateX(-6px) scale(1.02); }
+    100% { transform: translateX(0) scale(1.02); }
+}
