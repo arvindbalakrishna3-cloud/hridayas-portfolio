@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hridayas | Architecture & Interior Design India</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8D5B4C; /* Deep Indian Terracotta */
+            --accent: #D4AF37;  /* Indian Gold */
+            --bg: #F9F7F2;      /* Off-white / Eggshell */
+            --text: #2D2D2D;
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* Navigation */
+        nav {
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: rgba(249, 247, 246, 0.95);
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo { font-size: 1.8rem; letter-spacing: 3px; font-weight: 700; color: var(--primary); text-transform: uppercase; }
+
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 2.5rem; }
+        nav ul li a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.9rem; transition: var(--transition); }
+        nav ul li a:hover { color: var(--primary); }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero-content { max-width: 600px; }
+        .hero-content h1 { font-size: 4rem; margin-bottom: 1rem; }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        .btn:hover { background: white; color: var(--primary); }
+
+        /* Interactive Grid Section */
+        section { padding: 5rem 10%; }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Interactive Card */
+        .card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            height: 400px;
+            cursor: pointer;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 100%;
+            background: linear-gradient(to top, rgba(141, 91, 76, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .card:hover img { transform: scale(1.1); }
+        .card:hover .card-overlay { opacity: 1; transform: translateY(0); }
+
+        .card-overlay h3 { color: white; margin-bottom: 0.5rem; }
+        .card-overlay p { color: #f0f0f0; font-size: 0.85rem; }
+
+        /* Contact Section */
+        #contact { background-color: #fff; padding: 5rem 10%; text-align: center; }
+        .contact-form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+        .contact-form input, .contact-form textarea {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            font-family: inherit;
+        }
+        .contact-form button {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .contact-form button:hover { background: var(--text); }
+
+        footer { text-align: center; padding: 2rem; background: var(--text); color: white; font-size: 0.8rem; letter-spacing: 1px; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            nav ul { display: none; } /* Simplified for mobile example */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Hridayas</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#designs">Designs</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <div id="home" class="hero">
+        <div class="hero-content">
+            <h1>Indian Roots, Modern Souls.</h1>
+            <p>Blending timeless Vastu principles with contemporary minimalism. We don't just build spaces; we craft heartbeats.</p>
+            <a href="#projects" class="btn">View Portfolio</a>
+        </div>
+    </div>
+
+    <section id="designs">
+        <div class="section-title">
+            <h2>Our Design Philosophy</h2>
+            <p>Curated textures, locally sourced materials, and biophilic patterns.</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" alt="Living Room">
+                <div class="card-overlay">
+                    <h3>The Courtyard Living</h3>
+                    <p>Reviving the 'Aangan' with a modern twist.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&w=800&q=80" alt="Interior Detail">
+                <div class="card-overlay">
+                    <h3>Artisanal Accents</h3>
+                    <p>Incorporating brass and hand-carved stone.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80" alt="Minimalist Space">
+                <div class="card-overlay">
+                    <h3>Zen Corridors</h3>
+                    <p>Light-play and natural ventilation strategies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" style="background-color: #eee;">
+        <div class="section-title">
+            <h2>Iconic Projects</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80" alt="Project 1">
+                <div class="card-overlay">
+                    <h3>The Terracotta Villa</h3>
+                    <p>Adyar, Chennai | 2024</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Project 2">
+                <div class="card-overlay">
+                    <h3>Heritage Revived</h3>
+                    <p>Maduravayul, Chennai | 2023</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-title">
+            <h2>Contact Hridayas</h2>
+            <p>Let's discuss your next dream project.</p>
+        </div>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Tell us about your space"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 HRIDAYAS DESIGN STUDIO | INDIA</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple Fade-in Animation on Scroll
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = "0";
+            section.style.transform = "translateY(30px)";
+            section.style.transition = "all 0.8s ease-out";
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
