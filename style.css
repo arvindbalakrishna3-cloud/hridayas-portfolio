@@ -203,8 +203,8 @@ section {
     text-align: center;
 }
 
-.slide:hover img { transform: scale(1.1); }
-.slide:hover .card-overlay { opacity: 1; }
+.slide:hover img, .slide.hover img { transform: scale(1.1); }
+.slide:hover .card-overlay, .slide.hover .card-overlay { opacity: 1; }
 
 /* Arrows Outside Images */
 .slide-arrow {
@@ -265,6 +265,59 @@ section {
     letter-spacing: 2px;
 }
 
+/* --- 7. ABOUT SECTION --- */
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-content h3 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.about-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    color: #666;
+}
+
+.about-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat h4 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.stat p {
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.about-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
 footer {
     background: var(--dark);
     color: #888;
@@ -312,6 +365,8 @@ footer {
     .slide-arrow { display: none; } /* Use swipe on mobile */
     .slide { flex: 0 0 85%; }
     .contact-container { grid-template-columns: 1fr; padding: 2rem; }
+    .about-container { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+    .about-stats { justify-content: center; flex-wrap: wrap; }
 }
 
 /* --- Stuck effect: brief horizontal/scale motion when last slide reached --- */

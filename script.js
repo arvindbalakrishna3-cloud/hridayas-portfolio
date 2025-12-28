@@ -47,12 +47,32 @@ document.querySelectorAll('section').forEach(s => {
     observer.observe(s);
 });
 
-// Remove stuck state if user scrolls away from the end
-document.querySelectorAll('.slider-container').forEach(slider => {
-    slider.addEventListener('scroll', () => {
-        const atEnd = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 2;
-        if (!atEnd && slider.classList.contains('stuck')) {
-            slider.classList.remove('stuck');
+// Animate cards on scroll
+const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0) scale(1)";
+            }, index * 100); // Stagger animation
         }
-    }, { passive: true });
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.slide').forEach(card => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(50px) scale(0.9)";
+    card.style.transition = "0.8s cubic-bezier(0.25, 1, 0.5, 1)";
+    cardObserver.observe(card);
+});
+
+// MOBILE HOVER FIX
+document.querySelectorAll('.slide').forEach(card => {
+    card.addEventListener('touchstart', () => {
+        card.classList.add('hover');
+    });
+    
+    card.addEventListener('touchend', () => {
+        setTimeout(() => card.classList.remove('hover'), 150); // Small delay to prevent flicker
+    });
 });
