@@ -76,3 +76,72 @@ document.querySelectorAll('.slide').forEach(card => {
         setTimeout(() => card.classList.remove('hover'), 150); // Small delay to prevent flicker
     });
 });
+
+// MOBILE KEYBOARD SUPPORT FOR SLIDERS
+document.addEventListener('keydown', (e) => {
+    const sliders = document.querySelectorAll('.slider-container');
+    
+    sliders.forEach(slider => {
+        // Check if slider is in viewport
+        const rect = slider.getBoundingClientRect();
+        const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (inViewport) {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                const sliderId = slider.id;
+                moveSlide(sliderId, -1);
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                const sliderId = slider.id;
+                moveSlide(sliderId, 1);
+            }
+        }
+    });
+});
+
+// GALLERY LIGHTBOX
+(() => {
+    const galleryImgs = document.querySelectorAll('.gallery-grid img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.querySelector('.lightbox-img');
+    const lightboxCaption = document.querySelector('.lightbox-caption');
+    const closeBtn = document.querySelector('.lightbox-close');
+
+    if (!galleryImgs.length || !lightbox) return; // nothing to do
+
+    function openLightbox(img) {
+        const src = img.getAttribute('src');
+        const alt = img.getAttribute('alt') || '';
+        lightboxImg.src = src;
+        lightboxImg.alt = alt;
+        lightboxCaption.textContent = alt;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImg.src = '';
+        lightboxCaption.textContent = '';
+        document.body.style.overflow = '';
+    }
+
+    galleryImgs.forEach(img => {
+        img.addEventListener('click', () => openLightbox(img));
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+
+    // Close when clicking outside the image
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target === lightboxCaption) closeLightbox();
+    });
+
+    // ESC to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+})();
