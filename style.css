@@ -388,15 +388,23 @@ footer {
     100% { transform: translateX(0) scale(1.02); }
 }
 
-/* --- GALLERY GRID --- */
-.gallery-grid {
+/* --- GALLERY --- */
+.gallery-wrapper {
+    position: relative;
+    padding: 0 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gallery-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
     max-width: 1200px;
     margin: 0 auto;
 }
-.gallery-grid img {
+
+.gallery-container img {
     width: 100%;
     height: 200px;
     object-fit: cover;
@@ -405,7 +413,38 @@ footer {
     transition: transform 300ms ease, box-shadow 300ms ease;
     box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
-.gallery-grid img:hover { transform: scale(1.03); box-shadow: 0 18px 40px rgba(0,0,0,0.12); }
+
+.gallery-container img:hover { 
+    transform: scale(1.08); 
+    box-shadow: 0 18px 40px rgba(0,0,0,0.15); 
+}
+
+/* Gallery Arrow Buttons - Hidden by default */
+.gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    color: var(--primary);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-size: 1.2rem;
+    transition: var(--transition);
+    display: none;
+}
+
+.gallery-arrow:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.prev-gallery-arrow { left: 0; }
+.next-gallery-arrow { right: 0; }
 
 /* --- LIGHTBOX / MODAL --- */
 .lightbox {
@@ -443,7 +482,52 @@ footer {
     cursor: pointer;
 }
 
+@media (max-width: 768px) {
+    .gallery-wrapper { padding: 0 60px; }
+    
+    /* Show gallery arrows on mobile */
+    .gallery-arrow { 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    /* Convert gallery to horizontal slider on mobile */
+    .gallery-container {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        gap: 12px;
+        padding: 20px 0;
+        scrollbar-width: none;
+        grid-template-columns: none;
+    }
+    
+    .gallery-container::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .gallery-container img {
+        flex: 0 0 70%;
+        min-width: 300px;
+        height: 300px;
+        margin: 0;
+    }
+}
+
 @media (max-width: 480px) {
-    .gallery-grid img { height: 140px; }
+    .gallery-container img { 
+        flex: 0 0 85%;
+        min-width: 200px;
+        height: 250px; 
+    }
+    .gallery-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
     .lightbox { padding: 18px; }
 }

@@ -111,18 +111,22 @@
         <div class="section-header">
             <h2>Gallery</h2>
         </div>
-        <div class="gallery-grid">
-            <!-- Add your images inside the `images/` folder and update src accordingly -->
-            <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/maya5.jpg?raw=true" >
-            <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/anil3.jpg?raw=true" >
-            <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/anil4.jpg?raw=true" >
-            <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/maya6.jpg?raw=true" >
-            <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/palavakkam7.jpg?raw=true" >
-            <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/1.jpeg?raw=true" >
-            <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/2.jpg?raw=true" >
-            <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/anil2.jpg?raw=true" >
-            <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/grand1.png?raw=true" >
-            <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/grand2.jpg?raw=true" >
+        <div class="gallery-wrapper">
+            <button class="gallery-arrow prev-gallery-arrow" onclick="moveGallerySlide(-1)">&#10094;</button>
+            <div class="gallery-container" id="gallery-slider">
+                <!-- Add your images inside the `images/` folder and update src accordingly -->
+                <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/maya5.jpg?raw=true" >
+                <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/anil3.jpg?raw=true" >
+                <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/anil4.jpg?raw=true" >
+                <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/maya6.jpg?raw=true" >
+                <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/palavakkam7.jpg?raw=true" >
+                <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/1.jpeg?raw=true" >
+                <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/2.jpg?raw=true" >
+                <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/anil2.jpg?raw=true" >
+                <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/grand1.png?raw=true" >
+                <img src="https://github.com/arvindbalakrishna3-cloud/hridayas-portfolio/blob/main/images/grand2.jpg?raw=true" >
+            </div>
+            <button class="gallery-arrow next-gallery-arrow" onclick="moveGallerySlide(1)">&#10095;</button>
         </div>
     </section>
 

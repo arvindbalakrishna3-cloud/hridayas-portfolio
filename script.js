@@ -30,6 +30,16 @@ function moveSlide(sliderId, direction) {
     }, 520);
 }
 
+// GALLERY SLIDER LOGIC
+function moveGallerySlide(direction) {
+    const gallery = document.getElementById('gallery-slider');
+    const imgWidth = gallery.querySelector('img').offsetWidth + 12; // Image width + Gap
+    const current = gallery.scrollLeft;
+    const maxScroll = gallery.scrollWidth - gallery.clientWidth;
+    const target = Math.max(0, Math.min(maxScroll, current + direction * imgWidth));
+    gallery.scrollTo({ left: target, behavior: 'smooth' });
+}
+
 // SCROLL ANIMATION
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -102,7 +112,7 @@ document.addEventListener('keydown', (e) => {
 
 // GALLERY LIGHTBOX
 (() => {
-    const galleryImgs = document.querySelectorAll('.gallery-grid img');
+    const galleryImgs = document.querySelectorAll('.gallery-container img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.querySelector('.lightbox-img');
     const lightboxCaption = document.querySelector('.lightbox-caption');
