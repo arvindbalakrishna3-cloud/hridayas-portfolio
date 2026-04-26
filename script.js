@@ -1,46 +1,45 @@
-// MOBILE MENU
+// MOBILE MENU TOGGLE
 const hamburger = document.getElementById('hamburger-menu');
 const menu = document.getElementById('menu');
+const navLinks = document.querySelectorAll('.nav-links li a');
 
 hamburger.addEventListener('click', () => {
     menu.classList.toggle('active');
+});
+
+// Close mobile menu when a link is clicked
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        menu.classList.remove('active');
+    });
 });
 
 // SLIDER LOGIC
 function moveSlide(sliderId, direction) {
     const slider = document.getElementById(sliderId);
     const cardWidth = slider.querySelector('.card').offsetWidth + 30; // Card width + Gap
-    // compute a bounded target to avoid overscrolling
-    const current = slider.scrollLeft;
-    const maxScroll = slider.scrollWidth - slider.clientWidth;
-    const target = Math.max(0, Math.min(maxScroll, current + direction * cardWidth));
-    slider.scrollTo({ left: target, behavior: 'smooth' });
-
-    // Detect when we've reached the end and trigger a brief "stuck" animation
-    if (slider._stuckTimer) clearTimeout(slider._stuckTimer);
-    slider._stuckTimer = setTimeout(() => {
-        const atEnd = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 2;
-        if (atEnd) {
-            slider.classList.add('stuck');
-            // remove after animation completes
-            setTimeout(() => slider.classList.remove('stuck'), 900);
-        } else {
-            slider.classList.remove('stuck');
-        }
-    }, 520);
+    
+    // Calculate new position
+    const currentScroll = slider.scrollLeft;
+    slider.scrollTo({ 
+        left: currentScroll + (direction * cardWidth), 
+        behavior: 'smooth' 
+    });
 }
 
-// GALLERY SLIDER LOGIC
+// GALLERY SLIDER LOGIC (For Desktop)
 function moveGallerySlide(direction) {
     const gallery = document.getElementById('gallery-slider');
-    const imgWidth = gallery.querySelector('img').offsetWidth + 12; // Image width + Gap
-    const current = gallery.scrollLeft;
-    const maxScroll = gallery.scrollWidth - gallery.clientWidth;
-    const target = Math.max(0, Math.min(maxScroll, current + direction * imgWidth));
-    gallery.scrollTo({ left: target, behavior: 'smooth' });
+    // Only applies if gallery is in flex mode (mobile view, but buttons might be visible on tablet)
+    const imgWidth = gallery.querySelector('img').offsetWidth + 16; 
+    const currentScroll = gallery.scrollLeft;
+    gallery.scrollTo({ 
+        left: currentScroll + (direction * imgWidth), 
+        behavior: 'smooth' 
+    });
 }
 
-// SCROLL ANIMATION
+// SCROLL ANIMATION (Fade in sections)
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -57,14 +56,14 @@ document.querySelectorAll('section').forEach(s => {
     observer.observe(s);
 });
 
-// Animate cards on scroll
+// Animate individual cards on scroll
 const cardObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
             setTimeout(() => {
                 entry.target.style.opacity = "1";
                 entry.target.style.transform = "translateY(0) scale(1)";
-            }, index * 100); // Stagger animation
+            }, index * 100); 
         }
     });
 }, { threshold: 0.1 });
@@ -76,35 +75,31 @@ document.querySelectorAll('.slide').forEach(card => {
     cardObserver.observe(card);
 });
 
-// MOBILE HOVER FIX
+// MOBILE HOVER FIX FOR CARDS
 document.querySelectorAll('.slide').forEach(card => {
     card.addEventListener('touchstart', () => {
         card.classList.add('hover');
-    });
+    }, {passive: true});
     
     card.addEventListener('touchend', () => {
-        setTimeout(() => card.classList.remove('hover'), 150); // Small delay to prevent flicker
-    });
+        setTimeout(() => card.classList.remove('hover'), 200); 
+    }, {passive: true});
 });
 
-// MOBILE KEYBOARD SUPPORT FOR SLIDERS
+// KEYBOARD SUPPORT FOR SLIDERS
 document.addEventListener('keydown', (e) => {
     const sliders = document.querySelectorAll('.slider-container');
-    
     sliders.forEach(slider => {
-        // Check if slider is in viewport
         const rect = slider.getBoundingClientRect();
         const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
         
         if (inViewport) {
             if (e.key === 'ArrowLeft') {
                 e.preventDefault();
-                const sliderId = slider.id;
-                moveSlide(sliderId, -1);
+                moveSlide(slider.id, -1);
             } else if (e.key === 'ArrowRight') {
                 e.preventDefault();
-                const sliderId = slider.id;
-                moveSlide(sliderId, 1);
+                moveSlide(slider.id, 1);
             }
         }
     });
@@ -118,24 +113,24 @@ document.addEventListener('keydown', (e) => {
     const lightboxCaption = document.querySelector('.lightbox-caption');
     const closeBtn = document.querySelector('.lightbox-close');
 
-    if (!galleryImgs.length || !lightbox) return; // nothing to do
+    if (!galleryImgs.length || !lightbox) return;
 
     function openLightbox(img) {
-        const src = img.getAttribute('src');
-        const alt = img.getAttribute('alt') || '';
-        lightboxImg.src = src;
-        lightboxImg.alt = alt;
-        lightboxCaption.textContent = alt;
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = img.alt;
         lightbox.classList.add('open');
         lightbox.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
     }
 
     function closeLightbox() {
         lightbox.classList.remove('open');
         lightbox.setAttribute('aria-hidden', 'true');
-        lightboxImg.src = '';
-        lightboxCaption.textContent = '';
+        setTimeout(() => {
+            lightboxImg.src = '';
+            lightboxCaption.textContent = '';
+        }, 300); // Wait for transition
         document.body.style.overflow = '';
     }
 
@@ -145,12 +140,10 @@ document.addEventListener('keydown', (e) => {
 
     closeBtn.addEventListener('click', closeLightbox);
 
-    // Close when clicking outside the image
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox || e.target === lightboxCaption) closeLightbox();
     });
 
-    // ESC to close
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
     });
