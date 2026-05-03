@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hridayas | Architecture & Interior Design India</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <title>Hridayas | Architecture & Interior Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo">Hridayas</a>
-        <div class="hamburger" id="hamburger-menu">
+        <a href="index.html" class="logo">Hridayas</a>
+        <button class="hamburger" id="hamburger-menu" aria-label="Toggle Navigation">
             <span></span><span></span><span></span>
-        </div>
+        </button>
         <ul class="nav-links" id="menu">
             <li><a href="#home">HOME</a></li>
-            <li><a href="#designs">DESIGNS</a></li>
-            <li><a href="#gallery">GALLERY</a></li>
+            <li><a href="#designs">EXPERTISE</a></li>
+            <li><a href="gallery.html">GALLERY</a></li>
             <li><a href="#about">ABOUT</a></li>
             <li><a href="#contact">CONTACT US</a></li>
         </ul>
@@ -26,18 +26,20 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Built to Inspire.</h1>
-            <p>Where design meets Functionality. Crafting Spaces That Resonate Your Personality</p>
-            <a href="#projects" class="btn">Explore Work</a>
+            <p>Where design meets functionality. Crafting flowy, harmonious spaces that resonate with your personality.</p>
+            <a href="#designs" class="btn">Explore Work</a>
         </div>
     </section>
 
+    <!-- Unified "What We Do" & "Projects" Section -->
     <section id="designs">
         <div class="section-header">
-            <h2>What we do</h2>
+            <h2>Expertise & Projects</h2>
+            <p class="subtitle">Comprehensive design solutions and our favorite executions.</p>
         </div>
-        <div class="slider-wrapper">
-            <button class="slide-arrow prev-arrow" onclick="moveSlide('design-slider', -1)">&#10094;</button>
-            <div class="slider-container" id="design-slider">
+        <div class="grid-wrapper">
+            <div class="grid-container" id="design-grid">
+                <!-- Original Designs -->
                 <div class="card slide">
                     <img src="designs/4.jpg" alt="Elevation Design" loading="lazy">
                     <div class="card-overlay"><h3>Elevation</h3></div>
@@ -50,81 +52,50 @@
                     <img src="https://i.pinimg.com/1200x/5f/61/58/5f6158231ebde10fe0c8fb174f523683.jpg" alt="Interior Design" loading="lazy">
                     <div class="card-overlay"><h3>Interior Design</h3></div>
                 </div>
-                <div class="card slide">
-                    <img src="https://i.pinimg.com/736x/3e/71/5c/3e715c7ea245a880871b913c11b1b71b.jpg" alt="Lighting Design" loading="lazy">
-                    <div class="card-overlay"><h3>Lighting Design</h3></div>
-                </div>
-                <div class="card slide">
-                    <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?q=80&w=800" alt="Material Selection" loading="lazy">
-                    <div class="card-overlay"><h3>Material Selection</h3></div>
-                </div>
-            </div>
-            <button class="slide-arrow next-arrow" onclick="moveSlide('design-slider', 1)">&#10095;</button>
-        </div>
-    </section>
-
-    <section id="projects" class="bg-alt">
-        <div class="section-header">
-            <h2>Our Projects</h2>
-        </div>
-        <div class="slider-wrapper">
-            <button class="slide-arrow prev-arrow" onclick="moveSlide('project-slider', -1)">&#10094;</button>
-            <div class="slider-container" id="project-slider">
+                <!-- Integrated Projects -->
                 <div class="card slide">
                     <img src="gallery/maya4.jpg" alt="Anil Residence" loading="lazy">
-                    <div class="card-overlay"><h3>Residence</h3><p>Gandhi Nagar, Adyar</p></div>
+                    <div class="card-overlay">
+                        <h3>Residence</h3>
+                        <p>Gandhi Nagar, Adyar</p>
+                    </div>
                 </div>
                 <div class="card slide">
                     <img src="gallery/sus5.jpg" alt="Casa Grand" loading="lazy">
-                    <div class="card-overlay"><h3>Casa Grand</h3><p>Chennai</p></div>
+                    <div class="card-overlay">
+                        <h3>Casa Grand</h3>
+                        <p>Chennai</p>
+                    </div>
                 </div>
                 <div class="card slide">
                     <img src="gallery/1.jpeg" alt="Oyama Japanese Restaurant" loading="lazy">
-                    <div class="card-overlay"><h3>Oyama Japanese Restaurant</h3><p>Chennai</p></div>
-                </div>
-                <div class="card slide">
-                    <img src="gallery/anil1.jpg" alt="Anil Residence Alwarpet" loading="lazy">
-                    <div class="card-overlay"><h3>Residence</h3><p>Alwarpet, Chennai</p></div>
-                </div>
-                <div class="card slide">
-                    <img src="gallery/palavakkam7.jpg" alt="Tickles Kids Zone" loading="lazy">
-                    <div class="card-overlay"><h3>Tickles Kids Zone</h3><p>Palavakkam</p></div>
-                </div>
-                <div class="card slide">
-                    <img src="gallery/ramanium5.jpg" alt="Ramaniyam Saras" loading="lazy">
-                    <div class="card-overlay"><h3>Ramaniyam Saras</h3><p>Chennai</p></div>
+                    <div class="card-overlay">
+                        <h3>Oyama Restaurant</h3>
+                        <p>Chennai</p>
+                    </div>
                 </div>
             </div>
-            <button class="slide-arrow next-arrow" onclick="moveSlide('project-slider', 1)">&#10095;</button>
         </div>
     </section>
 
+    <!-- Infinite Auto-Scroll Gallery -->
     <section id="gallery">
         <div class="section-header">
-            <h2>Gallery</h2>
+            <h2>Curated Gallery</h2>
+            <p class="subtitle">A continuous flow of our favorite spaces. <a href="gallery.html" style="color:var(--primary); text-decoration:none; font-weight:500;">View Full Portfolio &rarr;</a></p>
         </div>
-        <div class="gallery-wrapper">
-            <button class="gallery-arrow prev-gallery-arrow" onclick="moveGallerySlide(-1)">&#10094;</button>
-            <div class="gallery-container" id="gallery-slider">
-                <img src="gallery/maya5.jpg" alt="Portfolio Image 1" loading="lazy">
-                <img src="gallery/anil3.jpg" alt="Portfolio Image 2" loading="lazy">
-                <img src="gallery/anil4.jpg" alt="Portfolio Image 3" loading="lazy">
-                <img src="gallery/maya6.jpg" alt="Portfolio Image 4" loading="lazy">
-                <img src="gallery/palavakkam7.jpg" alt="Portfolio Image 5" loading="lazy">
-                <img src="gallery/1.jpeg" alt="Portfolio Image 6" loading="lazy">
-                <img src="gallery/2.jpg" alt="Portfolio Image 7" loading="lazy">
-                <img src="gallery/anil2.jpg" alt="Portfolio Image 8" loading="lazy">
-                <img src="gallery/grand1.png" alt="Portfolio Image 9" loading="lazy">
-                <img src="gallery/grand2.jpg" alt="Portfolio Image 10" loading="lazy">
-                <img src="gallery/4.png" alt="Portfolio Image 11" loading="lazy">
-                <img src="gallery/anil1.jpg" alt="Portfolio Image 12" loading="lazy">
-                <img src="gallery/ramanium1.jpg" alt="Portfolio Image 13" loading="lazy">
-                <img src="gallery/ramanium3.jpg" alt="Portfolio Image 14" loading="lazy">
-                <img src="gallery/ramanium4.jpg" alt="Portfolio Image 15" loading="lazy">
-                <img src="gallery/sus4.jpg" alt="Portfolio Image 16" loading="lazy">
-                <img src="gallery/maya4.jpg" alt="Portfolio Image 17" loading="lazy">
+        
+        <div class="marquee-wrapper">
+            <div class="marquee-track" id="marquee-track">
+                <div class="marquee-item"><img src="gallery/maya5.jpg" alt="Modern Living Space" class="lightbox-trigger" loading="lazy"></div>
+                <div class="marquee-item"><img src="gallery/anil3.jpg" alt="Interior Detail" class="lightbox-trigger" loading="lazy"></div>
+                <div class="marquee-item"><img src="gallery/anil4.jpg" alt="Custom Wardrobe" class="lightbox-trigger" loading="lazy"></div>
+                <div class="marquee-item"><img src="gallery/maya6.jpg" alt="Modular Kitchen Setup" class="lightbox-trigger" loading="lazy"></div>
+                <div class="marquee-item"><img src="gallery/palavakkam7.jpg" alt="Kids Zone Interior" class="lightbox-trigger" loading="lazy"></div>
+                <div class="marquee-item"><img src="gallery/anil2.jpg" alt="Bedroom Overview" class="lightbox-trigger" loading="lazy"></div>
+                <div class="marquee-item"><img src="gallery/grand1.png" alt="Material Finish" class="lightbox-trigger" loading="lazy"></div>
+                <div class="marquee-item"><img src="gallery/ramanium1.jpg" alt="Kitchen Island" class="lightbox-trigger" loading="lazy"></div>
             </div>
-            <button class="gallery-arrow next-gallery-arrow" onclick="moveGallerySlide(1)">&#10095;</button>
         </div>
     </section>
 
@@ -133,27 +104,27 @@
             <h2>About Hridayas</h2>
         </div>
         <div class="about-container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" alt="Architecture Design Process" loading="lazy">
+            </div>
             <div class="about-content">
                 <h3>Crafting Timeless Spaces</h3>
-                <p>Founded on the belief that great design should be accessible and deeply personal, Hridayas is an integrated design startup dedicated to turning your "someday" into a reality.</p>
-                <p>We know that taking on a build or renovation can be daunting. By providing architectural planning and interior styling under one roof, we ensure a seamless transition from the foundation to the final furniture placement.</p>
+                <p>Founded on the belief that great design should be accessible and deeply personal, Hridayas is an integrated design studio dedicated to turning your "someday" into reality.</p>
+                <p>We know that taking on a build or renovation can be daunting. By providing architectural planning and interior styling under one roof, we ensure a seamless transition from foundation to final furniture placement.</p>
                 <div class="about-stats">
                     <div class="stat">
                         <h4>50+</h4>
-                        <p>Projects Completed</p>
+                        <p>Projects</p>
                     </div>
                     <div class="stat">
                         <h4>6+</h4>
-                        <p>Years Experience</p>
+                        <p>Years</p>
                     </div>
                     <div class="stat">
                         <h4>100%</h4>
-                        <p>Client Satisfaction</p>
+                        <p>Commitment</p>
                     </div>
                 </div>
-            </div>
-            <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" alt="Architecture Design Process" loading="lazy">
             </div>
         </div>
     </section>
@@ -162,16 +133,36 @@
         <div class="section-header"><h2>Let's Create Together</h2></div>
         <div class="contact-container">
             <div class="contact-info">
-                <h3>Contact Details</h3>
-                <p><strong>Phone:</strong> +91 9551509379</p>
-                <p><strong>Email:</strong> studioka@gmail.com</p>
-                <p><strong>Location:</strong> Chennai, India</p>
+                <h3>Start Your Project</h3>
+                <p>We are currently accepting new projects in Chennai and surrounding areas. Reach out to discuss your vision.</p>
+                <div class="contact-details">
+                    <p><strong>Phone:</strong> +91 9551509379</p>
+                    <p><strong>Email:</strong> studioka@gmail.com</p>
+                    <p><strong>Location:</strong> Chennai, India</p>
+                </div>
             </div>
             <form class="contact-form">
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <textarea rows="4" placeholder="Project Details" required></textarea>
-                <button type="submit">Submit Inquiry</button>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Project Location</label>
+                    <select id="location" required>
+                        <option value="">Select an option</option>
+                        <option value="chennai">Chennai</option>
+                        <option value="other-tn">Other (Tamil Nadu)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="details">Project Details</label>
+                    <textarea id="details" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Submit Inquiry</button>
             </form>
         </div>
     </section>
@@ -181,6 +172,7 @@
         <p>&copy; 2026 Studio KA. All Rights Reserved.</p>
     </footer>
 
+    <!-- Global Lightbox -->
     <div id="lightbox" class="lightbox" aria-hidden="true">
         <button class="lightbox-close" aria-label="Close">&times;</button>
         <img class="lightbox-img" src="" alt="" />
